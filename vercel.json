@@ -1,0 +1,5 @@
+{
+  "rewrites": [
+    { "source": "/(.*)", "destination": "/jitu's office sample website/frontend/$1" }
+  ]
+}
