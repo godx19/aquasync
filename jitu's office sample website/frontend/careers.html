@@ -1,0 +1,548 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description"
+    content="Careers at AquaSyncs – Join our team working on Industrial IoT, Environmental Monitoring, OCEMS, and Smart Compliance Solutions." />
+  <meta name="keywords"
+    content="AquaSyncs careers, IoT jobs, environmental monitoring jobs, CPCB compliance jobs, instrumentation jobs" />
+  <title>Careers | AquaSyncs</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700;900&family=Inter:wght@300;400;500;600;700&display=swap"
+    rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <link rel="stylesheet" href="css/style.css" />
+  <!-- Spline 3D viewer web component (no React needed) -->
+  <script type="module" src="https://unpkg.com/@splinetool/viewer@1.9.82/build/spline-viewer.js"></script>
+</head>
+
+<body>
+
+  <!-- ===== NAVBAR ===== -->
+  <nav id="navbar" class="scrolled">
+    <div class="nav-container">
+      <a href="index.html" class="logo" id="logo-link">
+        <span class="logo-icon"><i class="fas fa-microchip"></i></span>
+        <span class="logo-text">AQUA<span class="accent">SYNCS</span></span>
+      </a>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="index.html#home"     class="nav-link" id="nav-home">Home</a></li>
+        <li><a href="index.html#about"    class="nav-link" id="nav-about">About</a></li>
+        <li><a href="index.html#services" class="nav-link" id="nav-services">Services</a></li>
+        <li><a href="index.html#products" class="nav-link" id="nav-products">Products</a></li>
+        <li><a href="careers.html"        class="nav-link active" id="nav-careers">Careers</a></li>
+        <li><a href="index.html#team"     class="nav-link" id="nav-team">Team</a></li>
+        <li><a href="index.html#contact"  class="nav-link" id="nav-contact">Contact</a></li>
+      </ul>
+      <div class="nav-auth">
+        <a href="login.html" class="nav-btn nav-btn-login" id="nav-client-login">
+          <i class="fas fa-user"></i> Client Login
+        </a>
+        <a href="login.html?mode=admin" class="nav-btn nav-btn-signup" id="nav-admin-login">
+          <i class="fas fa-shield-halved"></i> Admin Login
+        </a>
+      </div>
+      <button class="hamburger" id="hamburger" aria-label="Toggle navigation menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- ============================================================
+       HERO STRIP — 2-column: left content | right Spline 3D robot
+       ============================================================ -->
+  <section class="careers-hero careers-hero-split" id="careers-hero">
+
+    <!-- Mouse-follow spotlight blob -->
+    <div class="hero-spotlight" id="heroSpotlight"></div>
+
+    <div class="container careers-hero-inner">
+
+      <!-- ── LEFT COLUMN ─────────────────────────────── -->
+      <div class="careers-hero-left">
+
+        <!-- Breadcrumb -->
+        <nav class="breadcrumb" aria-label="Breadcrumb">
+          <a href="index.html"><i class="fas fa-home"></i> Home</a>
+          <span>/</span>
+          <span>Careers</span>
+        </nav>
+
+        <!-- Pill badge -->
+        <div class="careers-badge" id="careers-top-badge">
+          <i class="fas fa-rocket"></i>
+          Careers at AquaSyncs
+        </div>
+
+        <!-- Headline -->
+        <h1>Build Your Career With<br /><span class="accent">Industrial Innovation</span></h1>
+
+        <!-- Lead text -->
+        <p class="hero-lead">
+          Join a team working on
+          <strong>Industrial IoT</strong>,
+          <strong>Environmental Monitoring</strong>,
+          <strong>Automation</strong>,
+          <strong>OCEMS</strong> and
+          <strong>Smart Compliance Solutions</strong>.
+          Help industries operate cleaner, smarter, and more efficiently.
+        </p>
+
+        <!-- CTA buttons -->
+        <div class="careers-hero-btns">
+          <a href="#open-positions" class="btn btn-primary" id="careers-view-jobs">
+            <i class="fas fa-briefcase"></i> View Open Positions
+          </a>
+          <a href="index.html#contact" class="btn btn-outline" id="careers-contact">
+            <i class="fas fa-envelope"></i> Send Your CV
+          </a>
+        </div>
+
+        <!-- Stats strip -->
+        <div class="careers-hero-stats">
+          <div class="ch-stat">
+            <span class="ch-stat-num">50+</span>
+            <span class="ch-stat-label">Team Members</span>
+          </div>
+          <div class="ch-stat">
+            <span class="ch-stat-num">12+</span>
+            <span class="ch-stat-label">Years in Industry</span>
+          </div>
+          <div class="ch-stat">
+            <span class="ch-stat-num">500+</span>
+            <span class="ch-stat-label">Projects Delivered</span>
+          </div>
+          <div class="ch-stat">
+            <span class="ch-stat-num">4</span>
+            <span class="ch-stat-label">Open Positions</span>
+          </div>
+        </div>
+
+      </div>
+      <!-- ── end LEFT ──────────────────────────────── -->
+
+      <!-- ── RIGHT COLUMN — Spline 3D Robot ────────── -->
+      <div class="careers-hero-right" id="splineWrap">
+        <!-- Spline viewer web component -->
+        <spline-viewer
+          id="splineRobot"
+          url="https://prod.spline.design/kZDDjO5HuC9GJUM2/scene.splinecode"
+          loading-anim-type="spinner-small-dark"
+          style="width:100%;height:100%;">
+        </spline-viewer>
+        <!-- Gradient fade at bottom to blend with section -->
+        <div class="spline-fade-bottom"></div>
+      </div>
+      <!-- ── end RIGHT ─────────────────────────────── -->
+
+    </div>
+  </section>
+
+  <!-- ============================================================
+       WHY JOIN US  (4 cards — same grid as product cards)
+       ============================================================ -->
+  <section class="why-join-section" id="why-join">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag"><i class="fas fa-star"></i> Why Us</span>
+        <h2>Why Join <span class="accent">AquaSyncs?</span></h2>
+        <p>Be part of a mission-driven team solving real environmental challenges with cutting-edge technology</p>
+      </div>
+
+      <div class="why-join-grid">
+
+        <div class="why-card" id="why-growth">
+          <span class="why-icon">🚀</span>
+          <h3>Career Growth</h3>
+          <p>Learn industrial technologies — IoT, SCADA, PLC, CEMS — and grow professionally with structured mentorship and promotion paths.</p>
+        </div>
+
+        <div class="why-card" id="why-projects">
+          <span class="why-icon">⚙️</span>
+          <h3>Advanced Projects</h3>
+          <p>Work on IoT, PLC, SCADA and compliance systems for real industries — cement, steel, power, chemicals and more.</p>
+        </div>
+
+        <div class="why-card" id="why-culture">
+          <span class="why-icon">🤝</span>
+          <h3>Great Culture</h3>
+          <p>Collaborative and supportive work environment where ideas are valued, ownership is encouraged, and team wins are celebrated.</p>
+        </div>
+
+        <div class="why-card" id="why-impact">
+          <span class="why-icon">🎯</span>
+          <h3>Real Impact</h3>
+          <p>Help industries achieve compliance and sustainability goals — your work directly contributes to a cleaner environment.</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       OPEN POSITIONS
+       ============================================================ -->
+  <section class="positions-section" id="open-positions">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag"><i class="fas fa-clipboard-list"></i> Join Us</span>
+        <h2>Open <span class="accent">Positions</span></h2>
+        <p>Explore current openings and find the role that matches your expertise</p>
+      </div>
+
+      <!-- Filter tabs -->
+      <div class="positions-filter" id="posFilter">
+        <button class="filter-btn active" data-filter="all"  id="flt-all">All Roles</button>
+        <button class="filter-btn" data-filter="engineering"  id="flt-eng">Engineering</button>
+        <button class="filter-btn" data-filter="software"     id="flt-soft">Software</button>
+        <button class="filter-btn" data-filter="sales"        id="flt-sales">Sales</button>
+        <button class="filter-btn" data-filter="intern"       id="flt-intern">Internship</button>
+      </div>
+
+      <!-- Job cards list -->
+      <div class="positions-list" id="positionsList">
+
+        <!-- Job 1 -->
+        <a href="index.html#contact" class="position-card" data-dept="engineering" id="job-iot-eng">
+          <div class="pos-left">
+            <div class="pos-meta">
+              <span class="pos-dept">Engineering</span>
+              <span class="pos-badge full">Full Time</span>
+            </div>
+            <div class="pos-title">IoT Field Engineer</div>
+            <div class="pos-info">
+              <span><i class="fas fa-map-marker-alt"></i> Delhi / NCR</span>
+              <span><i class="fas fa-briefcase"></i> 2–4 Yrs Exp.</span>
+              <span><i class="fas fa-tools"></i> IoT · SCADA · Modbus</span>
+            </div>
+          </div>
+          <span class="pos-apply-btn"><i class="fas fa-paper-plane"></i> Apply Now</span>
+        </a>
+
+        <!-- Job 2 -->
+        <a href="index.html#contact" class="position-card" data-dept="software" id="job-embedded">
+          <div class="pos-left">
+            <div class="pos-meta">
+              <span class="pos-dept">Software</span>
+              <span class="pos-badge full">Full Time</span>
+            </div>
+            <div class="pos-title">Embedded Systems Developer</div>
+            <div class="pos-info">
+              <span><i class="fas fa-map-marker-alt"></i> Remote / Delhi</span>
+              <span><i class="fas fa-briefcase"></i> 1–3 Yrs Exp.</span>
+              <span><i class="fas fa-tools"></i> C · ARM · RTOS · RS-485</span>
+            </div>
+          </div>
+          <span class="pos-apply-btn"><i class="fas fa-paper-plane"></i> Apply Now</span>
+        </a>
+
+        <!-- Job 3 -->
+        <a href="index.html#contact" class="position-card" data-dept="sales" id="job-sales">
+          <div class="pos-left">
+            <div class="pos-meta">
+              <span class="pos-dept">Sales</span>
+              <span class="pos-badge full">Full Time</span>
+            </div>
+            <div class="pos-title">Technical Sales Executive</div>
+            <div class="pos-info">
+              <span><i class="fas fa-map-marker-alt"></i> Pan India</span>
+              <span><i class="fas fa-briefcase"></i> 1–5 Yrs Exp.</span>
+              <span><i class="fas fa-tools"></i> B2B · Industrial Instruments</span>
+            </div>
+          </div>
+          <span class="pos-apply-btn"><i class="fas fa-paper-plane"></i> Apply Now</span>
+        </a>
+
+        <!-- Job 4 -->
+        <a href="index.html#contact" class="position-card" data-dept="intern" id="job-intern">
+          <div class="pos-left">
+            <div class="pos-meta">
+              <span class="pos-dept">Internship</span>
+              <span class="pos-badge intern">Internship</span>
+            </div>
+            <div class="pos-title">IoT & Instrumentation Intern</div>
+            <div class="pos-info">
+              <span><i class="fas fa-map-marker-alt"></i> Delhi (On-site)</span>
+              <span><i class="fas fa-briefcase"></i> Freshers Welcome</span>
+              <span><i class="fas fa-tools"></i> Arduino · Sensors · Python</span>
+            </div>
+          </div>
+          <span class="pos-apply-btn"><i class="fas fa-paper-plane"></i> Apply Now</span>
+        </a>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       PERKS & BENEFITS
+       ============================================================ -->
+  <section class="perks-section" id="perks">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag"><i class="fas fa-gift"></i> Benefits</span>
+        <h2>Perks & <span class="accent">Benefits</span></h2>
+        <p>We take care of our people so they can focus on doing great work</p>
+      </div>
+
+      <div class="perks-grid">
+
+        <div class="perk-card" id="perk-salary">
+          <div class="perk-icon"><i class="fas fa-rupee-sign"></i></div>
+          <div class="perk-text">
+            <h4>Competitive Salary</h4>
+            <p>Market-aligned compensation with annual performance reviews and bonuses.</p>
+          </div>
+        </div>
+
+        <div class="perk-card" id="perk-learning">
+          <div class="perk-icon"><i class="fas fa-graduation-cap"></i></div>
+          <div class="perk-text">
+            <h4>Learning & Development</h4>
+            <p>Sponsored certifications, workshops, and access to industry training programs.</p>
+          </div>
+        </div>
+
+        <div class="perk-card" id="perk-health">
+          <div class="perk-icon"><i class="fas fa-heartbeat"></i></div>
+          <div class="perk-text">
+            <h4>Health Insurance</h4>
+            <p>Comprehensive group health insurance covering self and dependents.</p>
+          </div>
+        </div>
+
+        <div class="perk-card" id="perk-flexible">
+          <div class="perk-icon"><i class="fas fa-clock"></i></div>
+          <div class="perk-text">
+            <h4>Flexible Work Hours</h4>
+            <p>Flexible scheduling and remote work options for eligible roles.</p>
+          </div>
+        </div>
+
+        <div class="perk-card" id="perk-travel">
+          <div class="perk-icon"><i class="fas fa-plane"></i></div>
+          <div class="perk-text">
+            <h4>Travel Allowance</h4>
+            <p>Field roles include fully reimbursed travel and accommodation expenses.</p>
+          </div>
+        </div>
+
+        <div class="perk-card" id="perk-growth">
+          <div class="perk-icon"><i class="fas fa-chart-line"></i></div>
+          <div class="perk-text">
+            <h4>Fast-Track Growth</h4>
+            <p>Clear promotion paths, leadership opportunities, and regular feedback cycles.</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       CTA BANNER — "Can't find a role? Send your CV"
+       ============================================================ -->
+  <section class="careers-cta-banner" id="careers-cta">
+    <div class="container">
+      <h2>Don't See a <span class="accent">Suitable Role?</span></h2>
+      <p>We're always looking for talented people. Send us your CV and we'll reach out when something fits your profile.</p>
+      <div style="display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;">
+        <a href="index.html#contact" class="btn btn-primary" id="cta-send-cv">
+          <i class="fas fa-paper-plane"></i> Send Your CV
+        </a>
+        <a href="mailto:careers@aquasyncs.com" class="btn btn-outline" id="cta-email-cv">
+          <i class="fas fa-envelope"></i> careers@aquasyncs.com
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="footer">
+    <div class="footer-grid container">
+      <div class="footer-brand">
+        <div class="logo">
+          <span class="logo-icon"><i class="fas fa-microchip"></i></span>
+          <span class="logo-text">AQUA<span class="accent">SYNCS</span></span>
+        </div>
+        <p>Professional IoT-powered workspace delivering smart solutions for modern businesses and individuals.</p>
+        <div class="social-links">
+          <a href="#" class="social-btn" title="Twitter"><i class="fab fa-twitter"></i></a>
+          <a href="#" class="social-btn" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+          <a href="#" class="social-btn" title="Instagram"><i class="fab fa-instagram"></i></a>
+          <a href="#" class="social-btn" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>Quick Links</h4>
+        <ul>
+          <li><a href="index.html#home">Home</a></li>
+          <li><a href="index.html#about">About Us</a></li>
+          <li><a href="index.html#services">Services</a></li>
+          <li><a href="index.html#products">Products</a></li>
+          <li><a href="careers.html">Careers</a></li>
+          <li><a href="index.html#contact">Contact</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Open Roles</h4>
+        <ul>
+          <li><a href="#job-iot-eng">IoT Field Engineer</a></li>
+          <li><a href="#job-embedded">Embedded Developer</a></li>
+          <li><a href="#job-sales">Sales Executive</a></li>
+          <li><a href="#job-intern">IoT Intern</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Contact</h4>
+        <p><i class="fas fa-envelope"></i> careers@aquasyncs.com</p>
+        <p><i class="fas fa-phone"></i> +91 XXXXX XXXXX</p>
+        <p><i class="fas fa-clock"></i> Mon–Fri: 9AM – 6PM</p>
+        <p><i class="fas fa-map-marker-alt"></i> [City], India</p>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2026 AquaSyncs. All rights reserved. &nbsp;|&nbsp; Built with <i class="fas fa-heart"></i> and IoT Technology</p>
+    </div>
+  </footer>
+
+  <!-- Back to Top -->
+  <button id="backToTop" title="Back to top" aria-label="Scroll back to top"><i class="fas fa-chevron-up"></i></button>
+
+  <script>
+    'use strict';
+
+    /* ─── Navbar scroll effect ─── */
+    const navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 60) navbar.classList.add('scrolled');
+      else navbar.classList.remove('scrolled');
+      const btt = document.getElementById('backToTop');
+      if (btt) btt.style.opacity = window.scrollY > 300 ? '1' : '0';
+    });
+
+    /* ─── Hamburger ─── */
+    const hamburger = document.getElementById('hamburger');
+    const navLinks  = document.getElementById('navLinks');
+    if (hamburger) {
+      hamburger.addEventListener('click', () => {
+        hamburger.classList.toggle('open');
+        navLinks.classList.toggle('open');
+      });
+    }
+
+    /* ─── Back to Top ─── */
+    const btt = document.getElementById('backToTop');
+    if (btt) {
+      btt.style.opacity = '0';
+      btt.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+    }
+
+    /* ─── Position filter ─── */
+    const filterBtns  = document.querySelectorAll('.filter-btn');
+    const posCards    = document.querySelectorAll('.position-card');
+
+    filterBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        // active state
+        filterBtns.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+
+        const filter = btn.dataset.filter;
+
+        posCards.forEach(card => {
+          const dept = card.dataset.dept;
+          const show = filter === 'all' || dept === filter;
+          card.style.display = show ? '' : 'none';
+        });
+
+        // show "no roles" message if all hidden
+        const visibleCount = [...posCards].filter(c => c.style.display !== 'none').length;
+        let noMsg = document.getElementById('no-positions-msg');
+        if (visibleCount === 0) {
+          if (!noMsg) {
+            noMsg = document.createElement('p');
+            noMsg.id = 'no-positions-msg';
+            noMsg.className = 'no-positions';
+            noMsg.innerHTML = '<i class="fas fa-search"></i>&nbsp; No open roles in this category right now. <a href="index.html#contact">Send your CV</a> and we\'ll be in touch!';
+            document.getElementById('positionsList').appendChild(noMsg);
+          }
+          noMsg.style.display = '';
+        } else {
+          if (noMsg) noMsg.style.display = 'none';
+        }
+      });
+    });
+
+    /* ─── Scroll-reveal animation ─── */
+    const revealEls = document.querySelectorAll('.why-card, .perk-card, .position-card');
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.style.opacity = '1';
+          e.target.style.transform = 'translateY(0)';
+          io.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.1 });
+
+    revealEls.forEach(el => {
+      el.style.opacity = '0';
+      el.style.transform = 'translateY(24px)';
+      el.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+      io.observe(el);
+    });
+
+    /* ─── Mouse-follow Spotlight (ibelick/Aceternity style) ─── */
+    (function () {
+      const hero      = document.getElementById('careers-hero');
+      const spotlight = document.getElementById('heroSpotlight');
+      if (!hero || !spotlight) return;
+
+      let targetX = 0, targetY = 0;
+      let currentX = 0, currentY = 0;
+      let rafId = null;
+      let isOver = false;
+
+      const SIZE = 420; // blob diameter in px
+
+      hero.addEventListener('mouseenter', () => {
+        isOver = true;
+        spotlight.style.opacity = '1';
+        if (!rafId) animate();
+      });
+
+      hero.addEventListener('mouseleave', () => {
+        isOver = false;
+        spotlight.style.opacity = '0';
+        cancelAnimationFrame(rafId);
+        rafId = null;
+      });
+
+      hero.addEventListener('mousemove', (e) => {
+        const rect = hero.getBoundingClientRect();
+        targetX = e.clientX - rect.left;
+        targetY = e.clientY - rect.top;
+      });
+
+      function animate() {
+        // spring-like lerp (ease = 0.08)
+        currentX += (targetX - currentX) * 0.08;
+        currentY += (targetY - currentY) * 0.08;
+
+        spotlight.style.left = (currentX - SIZE / 2) + 'px';
+        spotlight.style.top  = (currentY - SIZE / 2) + 'px';
+
+        if (isOver) rafId = requestAnimationFrame(animate);
+      }
+    })();
+
+  </script>
+  <script src="js/cursor-glow.js"></script>
+
+</body>
+</html>

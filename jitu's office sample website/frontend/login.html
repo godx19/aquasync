@@ -1,0 +1,905 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Login or Sign Up to AquaSyncs — Access your client dashboard or admin panel." />
+  <title>Login | AquaSyncs</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <link rel="stylesheet" href="css/style.css" />
+
+  <style>
+    /* ─── Login Page Specific Styles ─── */
+    body { overflow-x: hidden; }
+
+    /* Full-screen split layout */
+    .auth-page {
+      min-height: 100vh;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+    }
+
+    /* ── LEFT PANEL — branding + animated BG ── */
+    .auth-left {
+      position: relative;
+      background: linear-gradient(135deg, #050a0a 0%, #0a1a1a 50%, #050a0a 100%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 3rem;
+      overflow: hidden;
+    }
+
+    /* Animated circuit-grid background */
+    .auth-left::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(0,212,192,0.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0,212,192,0.04) 1px, transparent 1px);
+      background-size: 40px 40px;
+      animation: gridMove 8s linear infinite;
+    }
+
+    @keyframes gridMove {
+      0%   { background-position: 0 0; }
+      100% { background-position: 40px 40px; }
+    }
+
+    /* Glowing orbs */
+    .auth-left::after {
+      content: '';
+      position: absolute;
+      top: 20%; left: 15%;
+      width: 300px; height: 300px;
+      background: radial-gradient(circle, rgba(0,212,192,0.12) 0%, transparent 70%);
+      border-radius: 50%;
+      animation: pulse 4s ease-in-out infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); opacity: 0.6; }
+      50%       { transform: scale(1.2); opacity: 1; }
+    }
+
+    .auth-brand {
+      position: relative;
+      z-index: 2;
+      text-align: center;
+    }
+
+    .auth-brand .logo {
+      justify-content: center;
+      margin-bottom: 2.5rem;
+      font-size: 1.4rem;
+    }
+
+    .auth-brand .logo-icon { font-size: 1.8rem; }
+
+    .auth-tagline {
+      font-family: var(--heading-font);
+      font-size: clamp(1.4rem, 2.5vw, 2rem);
+      color: #fff;
+      line-height: 1.3;
+      margin-bottom: 1.2rem;
+    }
+
+    .auth-tagline .accent { color: var(--primary); }
+
+    .auth-desc {
+      color: var(--text-muted);
+      font-size: 0.9rem;
+      line-height: 1.75;
+      max-width: 340px;
+      margin: 0 auto 2.5rem;
+    }
+
+    /* Feature chips */
+    .auth-features {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+      width: 100%;
+      max-width: 300px;
+    }
+
+    .auth-feat {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      background: rgba(0,212,192,0.06);
+      border: 1px solid rgba(0,212,192,0.12);
+      border-radius: 10px;
+      padding: 0.65rem 1rem;
+      font-size: 0.82rem;
+      color: var(--text-muted);
+    }
+
+    .auth-feat i {
+      color: var(--primary);
+      width: 16px;
+      flex-shrink: 0;
+    }
+
+    /* ── RIGHT PANEL — form ── */
+    .auth-right {
+      background: var(--bg);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem;
+      position: relative;
+    }
+
+    .auth-card {
+      width: 100%;
+      max-width: 420px;
+    }
+
+    /* Top: back link */
+    .auth-back {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      margin-bottom: 2rem;
+      transition: var(--transition);
+    }
+    .auth-back:hover { color: var(--primary); gap: 0.65rem; }
+
+    /* Tab switcher: Login | Sign Up */
+    .auth-tabs {
+      display: flex;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 50px;
+      padding: 4px;
+      margin-bottom: 2rem;
+      position: relative;
+    }
+
+    .auth-tab {
+      flex: 1;
+      text-align: center;
+      padding: 0.55rem 1rem;
+      font-size: 0.85rem;
+      font-weight: 600;
+      border-radius: 50px;
+      cursor: pointer;
+      transition: var(--transition);
+      color: var(--text-muted);
+      border: none;
+      background: none;
+      font-family: var(--body-font);
+    }
+
+    .auth-tab.active {
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      color: #000;
+      font-weight: 700;
+      box-shadow: 0 3px 14px rgba(0,212,192,0.35);
+    }
+
+    /* Role selector (Client / Admin) */
+    .auth-role-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.75rem;
+      margin-bottom: 1.6rem;
+    }
+
+    .role-btn {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 1rem 0.5rem;
+      border: 1.5px solid var(--border);
+      border-radius: 12px;
+      background: var(--surface);
+      cursor: pointer;
+      transition: var(--transition);
+      font-family: var(--body-font);
+      color: var(--text-muted);
+    }
+
+    .role-btn i {
+      font-size: 1.4rem;
+      color: var(--text-muted);
+      transition: var(--transition);
+    }
+
+    .role-btn span {
+      font-size: 0.78rem;
+      font-weight: 600;
+    }
+
+    .role-btn.active,
+    .role-btn:hover {
+      border-color: var(--primary);
+      background: rgba(0,212,192,0.06);
+      color: var(--primary);
+    }
+
+    .role-btn.active i,
+    .role-btn:hover i { color: var(--primary); }
+
+    /* Form heading */
+    .auth-heading {
+      font-family: var(--heading-font);
+      font-size: 1.5rem;
+      color: #fff;
+      margin-bottom: 0.4rem;
+    }
+
+    .auth-subheading {
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      margin-bottom: 1.8rem;
+    }
+
+    /* Input groups */
+    .form-group {
+      margin-bottom: 1.1rem;
+      position: relative;
+    }
+
+    .form-label {
+      display: block;
+      font-size: 0.78rem;
+      font-weight: 600;
+      color: var(--text-muted);
+      margin-bottom: 0.4rem;
+      letter-spacing: 0.3px;
+    }
+
+    .form-input-wrap {
+      position: relative;
+    }
+
+    .form-input-wrap i {
+      position: absolute;
+      left: 14px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--text-muted);
+      font-size: 0.85rem;
+      pointer-events: none;
+      transition: var(--transition);
+    }
+
+    .form-input {
+      width: 100%;
+      padding: 0.75rem 1rem 0.75rem 2.6rem;
+      background: var(--surface);
+      border: 1.5px solid var(--border);
+      border-radius: 10px;
+      color: var(--text);
+      font-family: var(--body-font);
+      font-size: 0.88rem;
+      transition: var(--transition);
+      outline: none;
+    }
+
+    .form-input:focus {
+      border-color: var(--primary);
+      background: rgba(0,212,192,0.04);
+      box-shadow: 0 0 0 3px rgba(0,212,192,0.1);
+    }
+
+    .form-input:focus + i,
+    .form-input-wrap:focus-within i {
+      color: var(--primary);
+    }
+
+    /* Password toggle eye */
+    .pw-toggle {
+      position: absolute;
+      right: 12px;
+      top: 50%;
+      transform: translateY(-50%);
+      background: none;
+      border: none;
+      color: var(--text-muted);
+      cursor: pointer;
+      font-size: 0.85rem;
+      padding: 0.2rem;
+      transition: var(--transition);
+    }
+    .pw-toggle:hover { color: var(--primary); }
+
+    /* Forgot + Remember row */
+    .form-meta {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 1.5rem;
+      font-size: 0.78rem;
+    }
+
+    .form-remember {
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      color: var(--text-muted);
+      cursor: pointer;
+    }
+
+    .form-remember input[type="checkbox"] { accent-color: var(--primary); }
+
+    .form-forgot {
+      color: var(--primary);
+      font-weight: 600;
+    }
+    .form-forgot:hover { color: var(--accent); }
+
+    /* Submit button */
+    .auth-submit {
+      width: 100%;
+      padding: 0.9rem;
+      border: none;
+      border-radius: 10px;
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      color: #000;
+      font-family: var(--heading-font);
+      font-size: 0.9rem;
+      font-weight: 700;
+      letter-spacing: 1px;
+      cursor: pointer;
+      transition: var(--transition);
+      box-shadow: 0 4px 20px rgba(0,212,192,0.35);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+    }
+
+    .auth-submit:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 30px rgba(0,212,192,0.55);
+    }
+
+    /* Divider */
+    .auth-divider {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin: 1.4rem 0;
+      color: var(--text-muted);
+      font-size: 0.75rem;
+    }
+
+    .auth-divider::before,
+    .auth-divider::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--border);
+    }
+
+    /* Social login buttons */
+    .auth-social {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.75rem;
+    }
+
+    .social-login-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      padding: 0.65rem;
+      border: 1.5px solid var(--border);
+      border-radius: 10px;
+      background: var(--surface);
+      color: var(--text-muted);
+      font-size: 0.82rem;
+      font-weight: 600;
+      font-family: var(--body-font);
+      cursor: pointer;
+      transition: var(--transition);
+      text-decoration: none;
+    }
+
+    .social-login-btn:hover {
+      border-color: var(--border-hover);
+      color: var(--text);
+    }
+
+    .social-login-btn i { font-size: 1rem; }
+    .social-login-btn .fa-google { color: #ea4335; }
+    .social-login-btn .fa-linkedin { color: #0077b5; }
+
+    /* Switch panel text */
+    .auth-switch {
+      text-align: center;
+      margin-top: 1.6rem;
+      font-size: 0.8rem;
+      color: var(--text-muted);
+    }
+
+    .auth-switch a {
+      color: var(--primary);
+      font-weight: 600;
+    }
+
+    /* Admin-mode extra styling */
+    .admin-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      background: linear-gradient(135deg, rgba(255,140,0,0.15), rgba(255,60,0,0.1));
+      border: 1px solid rgba(255,140,0,0.3);
+      color: #ffaa00;
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 1.2px;
+      text-transform: uppercase;
+      padding: 0.25rem 0.75rem;
+      border-radius: 50px;
+      margin-bottom: 0.6rem;
+    }
+
+    /* Error/success message */
+    .auth-msg {
+      font-size: 0.78rem;
+      padding: 0.6rem 0.9rem;
+      border-radius: 8px;
+      margin-bottom: 1rem;
+      display: none;
+    }
+
+    .auth-msg.error {
+      background: rgba(255,60,60,0.1);
+      border: 1px solid rgba(255,60,60,0.25);
+      color: #ff7070;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    /* ── Responsive ── */
+    @media (max-width: 800px) {
+      .auth-page { grid-template-columns: 1fr; }
+      .auth-left  { display: none; }
+      .auth-right { padding: 5rem 1.5rem 2rem; align-items: flex-start; }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- ===== NAVBAR (minimal on login page) ===== -->
+  <nav id="navbar" class="scrolled">
+    <div class="nav-container">
+      <a href="index.html" class="logo" id="logo-link">
+        <span class="logo-icon"><i class="fas fa-microchip"></i></span>
+        <span class="logo-text">AQUA<span class="accent">SYNCS</span></span>
+      </a>
+      <div class="nav-auth">
+        <a href="index.html" class="nav-btn nav-btn-login">
+          <i class="fas fa-arrow-left"></i> Back to Site
+        </a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ===== MAIN AUTH PAGE ===== -->
+  <main class="auth-page" id="authPage">
+
+    <!-- ── LEFT PANEL ── -->
+    <div class="auth-left" aria-hidden="true">
+      <div class="auth-brand">
+        <div class="logo" style="justify-content:center; margin-bottom:2rem;">
+          <span class="logo-icon"><i class="fas fa-microchip"></i></span>
+          <span class="logo-text" style="font-size:1.4rem;">AQUA<span class="accent">SYNCS</span></span>
+        </div>
+
+        <h2 class="auth-tagline">
+          Smart IoT Dashboard<br /><span class="accent">At Your Fingertips</span>
+        </h2>
+
+        <p class="auth-desc">
+          Access real-time environmental monitoring data, CPCB reports, 
+          and compliance dashboards — all in one place.
+        </p>
+
+        <div class="auth-features">
+          <div class="auth-feat">
+            <i class="fas fa-chart-line"></i>
+            Real-time sensor data & analytics
+          </div>
+          <div class="auth-feat">
+            <i class="fas fa-file-invoice"></i>
+            CPCB compliance reports
+          </div>
+          <div class="auth-feat">
+            <i class="fas fa-bell"></i>
+            Automated alerts & notifications
+          </div>
+          <div class="auth-feat">
+            <i class="fas fa-lock"></i>
+            Enterprise-grade security
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── RIGHT PANEL ── -->
+    <div class="auth-right">
+      <div class="auth-card">
+
+        <!-- Back link -->
+        <a href="index.html" class="auth-back" id="authBack">
+          <i class="fas fa-arrow-left"></i> Back to AquaSyncs
+        </a>
+
+        <!-- Tab switcher -->
+        <div class="auth-tabs" id="authTabs" role="tablist">
+          <button class="auth-tab active" id="tab-login" role="tab" aria-selected="true"  onclick="switchTab('login')">
+            <i class="fas fa-sign-in-alt"></i> Login
+          </button>
+          <button class="auth-tab" id="tab-signup" role="tab" aria-selected="false" onclick="switchTab('signup')">
+            <i class="fas fa-user-plus"></i> Sign Up
+          </button>
+        </div>
+
+        <!-- Role selector (Client / Admin) -->
+        <div class="auth-role-row" id="roleRow">
+          <button class="role-btn active" id="role-client" onclick="selectRole('client')" type="button">
+            <i class="fas fa-user"></i>
+            <span>Client Portal</span>
+          </button>
+          <button class="role-btn" id="role-admin" onclick="selectRole('admin')" type="button">
+            <i class="fas fa-shield-halved"></i>
+            <span>Admin Panel</span>
+          </button>
+        </div>
+
+        <!-- ══ LOGIN FORM ══ -->
+        <div id="loginPanel">
+          <div id="loginAdminBadge" class="admin-badge" style="display:none;">
+            <i class="fas fa-shield-halved"></i> Admin Access
+          </div>
+          <h1 class="auth-heading" id="loginHeading">Welcome Back</h1>
+          <p class="auth-subheading" id="loginSub">Sign in to your client dashboard</p>
+
+          <div class="auth-msg error" id="loginError">
+            <i class="fas fa-circle-exclamation"></i>
+            <span id="loginErrorText">Invalid credentials. Please try again.</span>
+          </div>
+
+          <form id="loginForm" novalidate>
+            <div class="form-group">
+              <label class="form-label" for="loginEmail">Email Address</label>
+              <div class="form-input-wrap">
+                <input class="form-input" type="email" id="loginEmail" name="email"
+                       placeholder="you@company.com" autocomplete="email" required />
+                <i class="fas fa-envelope"></i>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="loginPassword">Password</label>
+              <div class="form-input-wrap">
+                <input class="form-input" type="password" id="loginPassword" name="password"
+                       placeholder="Enter your password" autocomplete="current-password" required />
+                <i class="fas fa-lock"></i>
+                <button type="button" class="pw-toggle" id="loginPwToggle" aria-label="Toggle password">
+                  <i class="fas fa-eye"></i>
+                </button>
+              </div>
+            </div>
+
+            <div class="form-meta">
+              <label class="form-remember">
+                <input type="checkbox" id="rememberMe" /> Remember me
+              </label>
+              <a href="#" class="form-forgot" id="forgotLink">Forgot password?</a>
+            </div>
+
+            <button type="submit" class="auth-submit" id="loginSubmit">
+              <i class="fas fa-sign-in-alt"></i> Sign In
+            </button>
+          </form>
+
+          <div class="auth-divider">or continue with</div>
+
+          <div class="auth-social">
+            <a href="#" class="social-login-btn" id="googleLoginBtn">
+              <i class="fab fa-google"></i> Google
+            </a>
+            <a href="#" class="social-login-btn" id="linkedinLoginBtn">
+              <i class="fab fa-linkedin"></i> LinkedIn
+            </a>
+          </div>
+
+          <p class="auth-switch">
+            Don't have an account?
+            <a href="#" onclick="switchTab('signup'); return false;" id="goSignup">Create one</a>
+          </p>
+        </div>
+
+        <!-- ══ SIGNUP FORM ══ -->
+        <div id="signupPanel" style="display:none;">
+          <h1 class="auth-heading">Create Account</h1>
+          <p class="auth-subheading">Join AquaSyncs and access your dashboard</p>
+
+          <div class="auth-msg error" id="signupError">
+            <i class="fas fa-circle-exclamation"></i>
+            <span id="signupErrorText">Please fill all required fields.</span>
+          </div>
+
+          <form id="signupForm" novalidate>
+            <div style="display:grid; grid-template-columns:1fr 1fr; gap:0.75rem;">
+              <div class="form-group" style="margin-bottom:0;">
+                <label class="form-label" for="signupFirst">First Name</label>
+                <div class="form-input-wrap">
+                  <input class="form-input" type="text" id="signupFirst" name="firstName"
+                         placeholder="Rahul" required />
+                  <i class="fas fa-user"></i>
+                </div>
+              </div>
+              <div class="form-group" style="margin-bottom:0;">
+                <label class="form-label" for="signupLast">Last Name</label>
+                <div class="form-input-wrap">
+                  <input class="form-input" type="text" id="signupLast" name="lastName"
+                         placeholder="Sharma" required />
+                  <i class="fas fa-user"></i>
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group" style="margin-top:1rem;">
+              <label class="form-label" for="signupEmail">Work Email</label>
+              <div class="form-input-wrap">
+                <input class="form-input" type="email" id="signupEmail" name="email"
+                       placeholder="you@company.com" autocomplete="email" required />
+                <i class="fas fa-envelope"></i>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="signupCompany">Company / Organisation</label>
+              <div class="form-input-wrap">
+                <input class="form-input" type="text" id="signupCompany" name="company"
+                       placeholder="Your company name" />
+                <i class="fas fa-building"></i>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="signupPhone">Phone Number</label>
+              <div class="form-input-wrap">
+                <input class="form-input" type="tel" id="signupPhone" name="phone"
+                       placeholder="+91 XXXXX XXXXX" />
+                <i class="fas fa-phone"></i>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="signupPassword">Password</label>
+              <div class="form-input-wrap">
+                <input class="form-input" type="password" id="signupPassword" name="password"
+                       placeholder="Min. 8 characters" autocomplete="new-password" required />
+                <i class="fas fa-lock"></i>
+                <button type="button" class="pw-toggle" id="signupPwToggle" aria-label="Toggle password">
+                  <i class="fas fa-eye"></i>
+                </button>
+              </div>
+            </div>
+
+            <!-- Password strength bar -->
+            <div style="margin: -0.5rem 0 1rem;">
+              <div style="height:3px; background:var(--border); border-radius:2px; overflow:hidden;">
+                <div id="pwStrengthBar" style="height:100%; width:0%; border-radius:2px; transition:all 0.3s ease;"></div>
+              </div>
+              <p id="pwStrengthLabel" style="font-size:0.7rem; color:var(--text-muted); margin-top:0.3rem;"></p>
+            </div>
+
+            <div class="form-group">
+              <label class="form-remember" style="font-size:0.78rem; color:var(--text-muted);">
+                <input type="checkbox" id="agreeTerms" required />
+                I agree to the <a href="#" style="color:var(--primary);">Terms of Service</a>
+                &amp; <a href="#" style="color:var(--primary);">Privacy Policy</a>
+              </label>
+            </div>
+
+            <button type="submit" class="auth-submit" id="signupSubmit">
+              <i class="fas fa-user-plus"></i> Create Account
+            </button>
+          </form>
+
+          <p class="auth-switch">
+            Already have an account?
+            <a href="#" onclick="switchTab('login'); return false;" id="goLogin">Sign in</a>
+          </p>
+        </div>
+
+      </div>
+    </div>
+    <!-- end right panel -->
+
+  </main>
+
+  <script src="js/cursor-glow.js"></script>
+  <script>
+    'use strict';
+
+    /* ─── Read URL param to auto-select Admin tab ─── */
+    const urlParams = new URLSearchParams(window.location.search);
+    let currentRole = urlParams.get('mode') === 'admin' ? 'admin' : 'client';
+    let currentTab  = 'login';
+
+    /* Init role on load */
+    window.addEventListener('DOMContentLoaded', () => {
+      selectRole(currentRole);
+      // if ?mode=admin, visually press Admin role btn
+      if (currentRole === 'admin') {
+        document.getElementById('role-admin').classList.add('active');
+        document.getElementById('role-client').classList.remove('active');
+      }
+    });
+
+    /* ─── Tab switching (Login ↔ Sign Up) ─── */
+    function switchTab(tab) {
+      currentTab = tab;
+      const loginPanel  = document.getElementById('loginPanel');
+      const signupPanel = document.getElementById('signupPanel');
+      const tabLogin    = document.getElementById('tab-login');
+      const tabSignup   = document.getElementById('tab-signup');
+      const roleRow     = document.getElementById('roleRow');
+
+      if (tab === 'login') {
+        loginPanel.style.display  = '';
+        signupPanel.style.display = 'none';
+        tabLogin.classList.add('active');    tabLogin.setAttribute('aria-selected', 'true');
+        tabSignup.classList.remove('active'); tabSignup.setAttribute('aria-selected', 'false');
+        roleRow.style.display = '';
+      } else {
+        loginPanel.style.display  = 'none';
+        signupPanel.style.display = '';
+        tabLogin.classList.remove('active'); tabLogin.setAttribute('aria-selected', 'false');
+        tabSignup.classList.add('active');   tabSignup.setAttribute('aria-selected', 'true');
+        roleRow.style.display = 'none';      // signup is always client
+      }
+    }
+
+    /* ─── Role switching (Client ↔ Admin) ─── */
+    function selectRole(role) {
+      currentRole = role;
+      document.getElementById('role-client').classList.toggle('active', role === 'client');
+      document.getElementById('role-admin').classList.toggle('active',  role === 'admin');
+
+      const adminBadge  = document.getElementById('loginAdminBadge');
+      const loginHead   = document.getElementById('loginHeading');
+      const loginSub    = document.getElementById('loginSub');
+
+      if (role === 'admin') {
+        adminBadge.style.display = 'inline-flex';
+        loginHead.textContent    = 'Admin Access';
+        loginSub.textContent     = 'Sign in to the AquaSyncs admin panel';
+      } else {
+        adminBadge.style.display = 'none';
+        loginHead.textContent    = 'Welcome Back';
+        loginSub.textContent     = 'Sign in to your client dashboard';
+      }
+    }
+
+    /* ─── Password visibility toggles ─── */
+    function makeToggle(toggleId, inputId) {
+      document.getElementById(toggleId).addEventListener('click', () => {
+        const inp = document.getElementById(inputId);
+        const ico = document.querySelector('#' + toggleId + ' i');
+        if (inp.type === 'password') {
+          inp.type = 'text';
+          ico.classList.replace('fa-eye', 'fa-eye-slash');
+        } else {
+          inp.type = 'password';
+          ico.classList.replace('fa-eye-slash', 'fa-eye');
+        }
+      });
+    }
+    makeToggle('loginPwToggle',  'loginPassword');
+    makeToggle('signupPwToggle', 'signupPassword');
+
+    /* ─── Password strength meter ─── */
+    document.getElementById('signupPassword').addEventListener('input', function () {
+      const val = this.value;
+      const bar = document.getElementById('pwStrengthBar');
+      const lbl = document.getElementById('pwStrengthLabel');
+      let strength = 0;
+      if (val.length >= 8)   strength++;
+      if (/[A-Z]/.test(val)) strength++;
+      if (/[0-9]/.test(val)) strength++;
+      if (/[^A-Za-z0-9]/.test(val)) strength++;
+
+      const map = [
+        { pct: '0%',   color: 'transparent', text: '' },
+        { pct: '25%',  color: '#ff4444',     text: 'Weak' },
+        { pct: '50%',  color: '#ffaa00',     text: 'Fair' },
+        { pct: '75%',  color: '#66cc44',     text: 'Good' },
+        { pct: '100%', color: 'var(--primary)', text: 'Strong ✓' },
+      ];
+      bar.style.width      = map[strength].pct;
+      bar.style.background = map[strength].color;
+      lbl.textContent      = map[strength].text;
+      lbl.style.color      = map[strength].color;
+    });
+
+    /* ─── Login form submit ─── */
+    document.getElementById('loginForm').addEventListener('submit', (e) => {
+      e.preventDefault();
+      const email = document.getElementById('loginEmail').value.trim();
+      const pass  = document.getElementById('loginPassword').value;
+      const err   = document.getElementById('loginError');
+
+      if (!email || !pass) {
+        document.getElementById('loginErrorText').textContent = 'Please fill in all fields.';
+        err.style.display = 'flex'; return;
+      }
+
+      // Simulate submit — replace with real API call
+      const btn = document.getElementById('loginSubmit');
+      btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Signing in…';
+      btn.disabled  = true;
+
+      setTimeout(() => {
+        btn.innerHTML = '<i class="fas fa-sign-in-alt"></i> Sign In';
+        btn.disabled  = false;
+        // Show error for demo (in production: redirect on success)
+        document.getElementById('loginErrorText').textContent =
+          'Demo mode — backend not connected yet.';
+        err.style.display = 'flex';
+      }, 1800);
+    });
+
+    /* ─── Sign Up form submit ─── */
+    document.getElementById('signupForm').addEventListener('submit', (e) => {
+      e.preventDefault();
+      const first = document.getElementById('signupFirst').value.trim();
+      const email = document.getElementById('signupEmail').value.trim();
+      const pass  = document.getElementById('signupPassword').value;
+      const agree = document.getElementById('agreeTerms').checked;
+      const err   = document.getElementById('signupError');
+
+      if (!first || !email || !pass) {
+        document.getElementById('signupErrorText').textContent = 'Please fill all required fields.';
+        err.style.display = 'flex'; return;
+      }
+      if (!agree) {
+        document.getElementById('signupErrorText').textContent = 'Please accept the Terms of Service.';
+        err.style.display = 'flex'; return;
+      }
+
+      const btn = document.getElementById('signupSubmit');
+      btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Creating account…';
+      btn.disabled  = true;
+
+      setTimeout(() => {
+        btn.innerHTML = '<i class="fas fa-user-plus"></i> Create Account';
+        btn.disabled  = false;
+        document.getElementById('signupErrorText').textContent =
+          'Demo mode — backend not connected yet.';
+        err.style.display = 'flex';
+      }, 1800);
+    });
+
+    /* ─── Navbar scroll ─── */
+    const navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 20) navbar.classList.add('scrolled');
+      else navbar.classList.remove('scrolled');
+    });
+  </script>
+
+</body>
+</html>
