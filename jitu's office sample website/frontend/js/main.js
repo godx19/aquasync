@@ -116,9 +116,9 @@ backToTopBtn.addEventListener('click', () => {
   window.addEventListener('mousemove', e => { mouse.x = e.clientX; mouse.y = e.clientY; });
 
   const COLORS = {
-    primary: '#00d4c0',
-    accent:  '#00ffe5',
-    conn:    'rgba(0, 212, 192, 0.18)',
+    primary: '#2d7a34',
+    accent:  '#d95a14',
+    conn:    'rgba(45, 122, 52, 0.15)',
   };
 
   class Node {

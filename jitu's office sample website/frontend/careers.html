@@ -15,7 +15,7 @@
     href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700;900&family=Inter:wght@300;400;500;600;700&display=swap"
     rel="stylesheet" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
-  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/style.css?v=3" />
   <!-- Spline 3D viewer web component (no React needed) -->
   <script type="module" src="https://unpkg.com/@splinetool/viewer@1.9.82/build/spline-viewer.js"></script>
 </head>
@@ -26,8 +26,21 @@
   <nav id="navbar" class="scrolled">
     <div class="nav-container">
       <a href="index.html" class="logo" id="logo-link">
-        <span class="logo-icon"><i class="fas fa-microchip"></i></span>
-        <span class="logo-text">AQUA<span class="accent">SYNCS</span></span>
+        <span class="logo-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 90" width="34" height="26" style="vertical-align: middle;">
+            <!-- Gear center (40, 52) -->
+            <path d="M 54.9,30.7 A 26,26 0 1,0 54.9,73.3" fill="none" stroke="#d95a14" stroke-width="11" stroke-linecap="square" />
+            <polygon points="33,11 47,11 45,26 35,26" fill="#d95a14" transform="rotate(90, 40, 52)" />
+            <polygon points="33,11 47,11 45,26 35,26" fill="#d95a14" transform="rotate(135, 40, 52)" />
+            <polygon points="33,11 47,11 45,26 35,26" fill="#d95a14" transform="rotate(180, 40, 52)" />
+            <polygon points="33,11 47,11 45,26 35,26" fill="#d95a14" transform="rotate(225, 40, 52)" />
+            <polygon points="33,11 47,11 45,26 35,26" fill="#d95a14" transform="rotate(270, 40, 52)" />
+            <!-- Leaves -->
+            <path d="M 61,20 C 54,5 42,1 36,5 C 36,15 50,25 61,20 Z" fill="#8ec051" />
+            <path d="M 65,20 C 72,5 84,1 90,5 C 90,15 76,25 65,20 Z" fill="#d95a14" />
+          </svg>
+        </span>
+        <span class="logo-text"><span style="color: var(--primary);">EIPL</span></span>
       </a>
       <ul class="nav-links" id="navLinks">
         <li><a href="index.html#home"     class="nav-link" id="nav-home">Home</a></li>
@@ -366,8 +379,21 @@
     <div class="footer-grid container">
       <div class="footer-brand">
         <div class="logo">
-          <span class="logo-icon"><i class="fas fa-microchip"></i></span>
-          <span class="logo-text">AQUA<span class="accent">SYNCS</span></span>
+          <span class="logo-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 90" width="34" height="26" style="vertical-align: middle;">
+              <!-- Gear center (40, 52) -->
+              <path d="M 54.9,30.7 A 26,26 0 1,0 54.9,73.3" fill="none" stroke="#d95a14" stroke-width="11" stroke-linecap="square" />
+              <polygon points="33,11 47,11 45,26 35,26" fill="#d95a14" transform="rotate(90, 40, 52)" />
+              <polygon points="33,11 47,11 45,26 35,26" fill="#d95a14" transform="rotate(135, 40, 52)" />
+              <polygon points="33,11 47,11 45,26 35,26" fill="#d95a14" transform="rotate(180, 40, 52)" />
+              <polygon points="33,11 47,11 45,26 35,26" fill="#d95a14" transform="rotate(225, 40, 52)" />
+              <polygon points="33,11 47,11 45,26 35,26" fill="#d95a14" transform="rotate(270, 40, 52)" />
+              <!-- Leaves -->
+              <path d="M 61,20 C 54,5 42,1 36,5 C 36,15 50,25 61,20 Z" fill="#8ec051" />
+              <path d="M 65,20 C 72,5 84,1 90,5 C 90,15 76,25 65,20 Z" fill="#d95a14" />
+            </svg>
+          </span>
+          <span class="logo-text"><span style="color: var(--primary);">EIPL</span></span>
         </div>
         <p>Professional IoT-powered workspace delivering smart solutions for modern businesses and individuals.</p>
         <div class="social-links">

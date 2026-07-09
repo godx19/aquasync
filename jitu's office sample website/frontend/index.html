@@ -15,7 +15,7 @@
     href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700;900&family=Inter:wght@300;400;500;600;700&display=swap"
     rel="stylesheet" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
-  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/style.css?v=3" />
 </head>
 
 <body>
@@ -23,9 +23,38 @@
   <!-- ===== PRELOADER ===== -->
   <div id="preloader">
     <div class="preloader-inner">
-      <div class="preloader-logo-wrapper">
-        <div class="circuit-ring"></div>
-        <div class="preloader-logo"><i class="fas fa-microchip"></i></div>
+      <div class="preloader-logo-wrapper" style="width: 220px; height: 170px; margin: 0 auto;">
+        <!-- EIPL Custom SVG Logo -->
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 260 200" width="100%" height="100%">
+          <g transform="translate(15, 10)">
+            <!-- Orange Gear (C-Shape/Open on Right) -->
+            <g id="gear-group">
+              <path d="M 74.9,58.7 A 26,26 0 1,0 74.9,101.3" fill="none" stroke="#d95a14" stroke-width="11" stroke-linecap="square" />
+              <polygon points="53,39 67,39 69,54 51,54" fill="#d95a14" transform="rotate(90, 60, 80)" />
+              <polygon points="53,39 67,39 69,54 51,54" fill="#d95a14" transform="rotate(135, 60, 80)" />
+              <polygon points="53,39 67,39 69,54 51,54" fill="#d95a14" transform="rotate(180, 60, 80)" />
+              <polygon points="53,39 67,39 69,54 51,54" fill="#d95a14" transform="rotate(225, 60, 80)" />
+              <polygon points="53,39 67,39 69,54 51,54" fill="#d95a14" transform="rotate(270, 60, 80)" />
+            </g>
+
+            <!-- Leaves (Top Right of Gear, above EIPL) -->
+            <path d="M 81,48 C 74,33 62,29 56,33 C 56,43 70,53 81,48 Z" fill="#8ec051" />
+            <path d="M 81,48 Q 70,41 56,33" fill="none" stroke="#fff" stroke-width="1.2" stroke-linecap="round" />
+
+            <path d="M 85,48 C 92,33 104,29 110,33 C 110,43 96,53 85,48 Z" fill="#d95a14" />
+            <path d="M 85,48 Q 96,41 110,33" fill="none" stroke="#fff" stroke-width="1.2" stroke-linecap="round" />
+
+            <!-- EIPL Green Text -->
+            <text x="86" y="90" font-family="'Inter', 'Montserrat', 'Helvetica Neue', Arial, sans-serif" font-weight="900" font-size="34" fill="#38761d" letter-spacing="0.5">EIPL</text>
+
+            <!-- ERAM INSTRUMENTS PVT LTD Text -->
+            <g transform="translate(38, 120)">
+              <text x="0" y="14" font-family="'Inter', 'Montserrat', 'Helvetica Neue', Arial, sans-serif" font-weight="800" font-size="14.5" fill="#111111" letter-spacing="0.8">ERAM</text>
+              <text x="0" y="32" font-family="'Inter', 'Montserrat', 'Helvetica Neue', Arial, sans-serif" font-weight="800" font-size="14.5" fill="#111111" letter-spacing="0.8">INSTRUMENTS</text>
+              <text x="0" y="50" font-family="'Inter', 'Montserrat', 'Helvetica Neue', Arial, sans-serif" font-weight="800" font-size="14.5" fill="#111111" letter-spacing="0.8">PVT LTD</text>
+            </g>
+          </g>
+        </svg>
       </div>
       <p class="preloader-text">INITIALIZING SYSTEM...</p>
     </div>
@@ -35,8 +64,21 @@
   <nav id="navbar">
     <div class="nav-container">
       <a href="#home" class="logo" id="logo-link">
-        <span class="logo-icon"><i class="fas fa-microchip"></i></span>
-        <span class="logo-text">AQUA<span class="accent">SYNCS</span></span>
+        <span class="logo-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 90" width="34" height="26" style="vertical-align: middle;">
+            <!-- Gear center (40, 52) -->
+            <path d="M 54.9,30.7 A 26,26 0 1,0 54.9,73.3" fill="none" stroke="#d95a14" stroke-width="11" stroke-linecap="square" />
+            <polygon points="33,11 47,11 45,26 35,26" fill="#d95a14" transform="rotate(90, 40, 52)" />
+            <polygon points="33,11 47,11 45,26 35,26" fill="#d95a14" transform="rotate(135, 40, 52)" />
+            <polygon points="33,11 47,11 45,26 35,26" fill="#d95a14" transform="rotate(180, 40, 52)" />
+            <polygon points="33,11 47,11 45,26 35,26" fill="#d95a14" transform="rotate(225, 40, 52)" />
+            <polygon points="33,11 47,11 45,26 35,26" fill="#d95a14" transform="rotate(270, 40, 52)" />
+            <!-- Leaves -->
+            <path d="M 61,20 C 54,5 42,1 36,5 C 36,15 50,25 61,20 Z" fill="#8ec051" />
+            <path d="M 65,20 C 72,5 84,1 90,5 C 90,15 76,25 65,20 Z" fill="#d95a14" />
+          </svg>
+        </span>
+        <span class="logo-text"><span style="color: var(--primary);">EIPL</span></span>
       </a>
       <ul class="nav-links" id="navLinks">
         <li><a href="#home" class="nav-link active" id="nav-home">Home</a></li>
@@ -627,8 +669,21 @@
     <div class="footer-grid container">
       <div class="footer-brand">
         <div class="logo">
-          <span class="logo-icon"><i class="fas fa-microchip"></i></span>
-          <span class="logo-text">AQUA<span class="accent">SYNCS</span></span>
+          <span class="logo-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 90" width="34" height="26" style="vertical-align: middle;">
+              <!-- Gear center (40, 52) -->
+              <path d="M 54.9,30.7 A 26,26 0 1,0 54.9,73.3" fill="none" stroke="#d95a14" stroke-width="11" stroke-linecap="square" />
+              <polygon points="33,11 47,11 45,26 35,26" fill="#d95a14" transform="rotate(90, 40, 52)" />
+              <polygon points="33,11 47,11 45,26 35,26" fill="#d95a14" transform="rotate(135, 40, 52)" />
+              <polygon points="33,11 47,11 45,26 35,26" fill="#d95a14" transform="rotate(180, 40, 52)" />
+              <polygon points="33,11 47,11 45,26 35,26" fill="#d95a14" transform="rotate(225, 40, 52)" />
+              <polygon points="33,11 47,11 45,26 35,26" fill="#d95a14" transform="rotate(270, 40, 52)" />
+              <!-- Leaves -->
+              <path d="M 61,20 C 54,5 42,1 36,5 C 36,15 50,25 61,20 Z" fill="#8ec051" />
+              <path d="M 65,20 C 72,5 84,1 90,5 C 90,15 76,25 65,20 Z" fill="#d95a14" />
+            </svg>
+          </span>
+          <span class="logo-text"><span style="color: var(--primary);">EIPL</span></span>
         </div>
         <p>Professional IoT-powered workspace delivering smart solutions for modern businesses and individuals.</p>
         <div class="social-links">
@@ -675,7 +730,7 @@
   <!-- Back to Top -->
   <button id="backToTop" title="Back to top" aria-label="Scroll back to top"><i class="fas fa-chevron-up"></i></button>
 
-  <script src="js/main.js"></script>
+  <script src="js/main.js?v=2"></script>
   <script src="js/cursor-glow.js"></script>
 </body>
 

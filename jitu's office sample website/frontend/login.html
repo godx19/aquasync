@@ -10,7 +10,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
-  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/style.css?v=3" />
 
   <style>
     /* ─── Login Page Specific Styles ─── */
@@ -26,7 +26,7 @@
     /* ── LEFT PANEL — branding + animated BG ── */
     .auth-left {
       position: relative;
-      background: linear-gradient(135deg, #050a0a 0%, #0a1a1a 50%, #050a0a 100%);
+      background: linear-gradient(135deg, #f1f5f2 0%, #e2ece4 50%, #f1f5f2 100%);
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -41,8 +41,8 @@
       position: absolute;
       inset: 0;
       background-image:
-        linear-gradient(rgba(0,212,192,0.04) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(0,212,192,0.04) 1px, transparent 1px);
+        linear-gradient(rgba(45,122,52,0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(45,122,52,0.03) 1px, transparent 1px);
       background-size: 40px 40px;
       animation: gridMove 8s linear infinite;
     }
@@ -58,7 +58,7 @@
       position: absolute;
       top: 20%; left: 15%;
       width: 300px; height: 300px;
-      background: radial-gradient(circle, rgba(0,212,192,0.12) 0%, transparent 70%);
+      background: radial-gradient(circle, rgba(45,122,52,0.08) 0%, transparent 70%);
       border-radius: 50%;
       animation: pulse 4s ease-in-out infinite;
     }
@@ -85,7 +85,7 @@
     .auth-tagline {
       font-family: var(--heading-font);
       font-size: clamp(1.4rem, 2.5vw, 2rem);
-      color: #fff;
+      color: var(--text-contrast);
       line-height: 1.3;
       margin-bottom: 1.2rem;
     }
@@ -113,8 +113,8 @@
       display: flex;
       align-items: center;
       gap: 0.75rem;
-      background: rgba(0,212,192,0.06);
-      border: 1px solid rgba(0,212,192,0.12);
+      background: rgba(45,122,52,0.06);
+      border: 1px solid rgba(45,122,52,0.12);
       border-radius: 10px;
       padding: 0.65rem 1rem;
       font-size: 0.82rem;
@@ -182,9 +182,9 @@
 
     .auth-tab.active {
       background: linear-gradient(135deg, var(--primary), var(--secondary));
-      color: #000;
+      color: #fff;
       font-weight: 700;
-      box-shadow: 0 3px 14px rgba(0,212,192,0.35);
+      box-shadow: 0 3px 14px rgba(45,122,52,0.20);
     }
 
     /* Role selector (Client / Admin) */
@@ -224,7 +224,7 @@
     .role-btn.active,
     .role-btn:hover {
       border-color: var(--primary);
-      background: rgba(0,212,192,0.06);
+      background: rgba(45,122,52,0.06);
       color: var(--primary);
     }
 
@@ -235,7 +235,7 @@
     .auth-heading {
       font-family: var(--heading-font);
       font-size: 1.5rem;
-      color: #fff;
+      color: var(--text-contrast);
       margin-bottom: 0.4rem;
     }
 
@@ -481,8 +481,21 @@
   <nav id="navbar" class="scrolled">
     <div class="nav-container">
       <a href="index.html" class="logo" id="logo-link">
-        <span class="logo-icon"><i class="fas fa-microchip"></i></span>
-        <span class="logo-text">AQUA<span class="accent">SYNCS</span></span>
+        <span class="logo-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 90" width="34" height="26" style="vertical-align: middle;">
+            <!-- Gear center (40, 52) -->
+            <path d="M 54.9,30.7 A 26,26 0 1,0 54.9,73.3" fill="none" stroke="#d95a14" stroke-width="11" stroke-linecap="square" />
+            <polygon points="33,11 47,11 45,26 35,26" fill="#d95a14" transform="rotate(90, 40, 52)" />
+            <polygon points="33,11 47,11 45,26 35,26" fill="#d95a14" transform="rotate(135, 40, 52)" />
+            <polygon points="33,11 47,11 45,26 35,26" fill="#d95a14" transform="rotate(180, 40, 52)" />
+            <polygon points="33,11 47,11 45,26 35,26" fill="#d95a14" transform="rotate(225, 40, 52)" />
+            <polygon points="33,11 47,11 45,26 35,26" fill="#d95a14" transform="rotate(270, 40, 52)" />
+            <!-- Leaves -->
+            <path d="M 61,20 C 54,5 42,1 36,5 C 36,15 50,25 61,20 Z" fill="#8ec051" />
+            <path d="M 65,20 C 72,5 84,1 90,5 C 90,15 76,25 65,20 Z" fill="#d95a14" />
+          </svg>
+        </span>
+        <span class="logo-text"><span style="color: var(--primary);">EIPL</span></span>
       </a>
       <div class="nav-auth">
         <a href="index.html" class="nav-btn nav-btn-login">
@@ -499,8 +512,21 @@
     <div class="auth-left" aria-hidden="true">
       <div class="auth-brand">
         <div class="logo" style="justify-content:center; margin-bottom:2rem;">
-          <span class="logo-icon"><i class="fas fa-microchip"></i></span>
-          <span class="logo-text" style="font-size:1.4rem;">AQUA<span class="accent">SYNCS</span></span>
+          <span class="logo-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 90" width="34" height="26" style="vertical-align: middle;">
+              <!-- Gear center (40, 52) -->
+              <path d="M 54.9,30.7 A 26,26 0 1,0 54.9,73.3" fill="none" stroke="#d95a14" stroke-width="11" stroke-linecap="square" />
+              <polygon points="33,11 47,11 45,26 35,26" fill="#d95a14" transform="rotate(90, 40, 52)" />
+              <polygon points="33,11 47,11 45,26 35,26" fill="#d95a14" transform="rotate(135, 40, 52)" />
+              <polygon points="33,11 47,11 45,26 35,26" fill="#d95a14" transform="rotate(180, 40, 52)" />
+              <polygon points="33,11 47,11 45,26 35,26" fill="#d95a14" transform="rotate(225, 40, 52)" />
+              <polygon points="33,11 47,11 45,26 35,26" fill="#d95a14" transform="rotate(270, 40, 52)" />
+              <!-- Leaves -->
+              <path d="M 61,20 C 54,5 42,1 36,5 C 36,15 50,25 61,20 Z" fill="#8ec051" />
+              <path d="M 65,20 C 72,5 84,1 90,5 C 90,15 76,25 65,20 Z" fill="#d95a14" />
+            </svg>
+          </span>
+          <span class="logo-text" style="font-size:1.4rem;"><span style="color: var(--primary);">EIPL</span></span>
         </div>
 
         <h2 class="auth-tagline">
